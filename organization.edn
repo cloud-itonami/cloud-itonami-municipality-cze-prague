@@ -1,0 +1,9 @@
+;; Real-world organization location / contact.
+;; :head-role is institutional title only -- no personal names.
+{:name-en "Capital City of Prague (Hlavní město Praha)"
+ :official-url "https://praha.eu/"
+ :wikidata "Q1085"
+ :head-role-note "institutional office title only (Mayor of Prague / primátor); personal names of current office-holders are intentionally NOT stored"
+ :hq {:line-en "Prague" :country "cze" :kind "capital" :provenance "https://www.wikidata.org/wiki/Q1085" :last-verified "2026-07-17" :sourcing "authoritative"}
+ :sourced-from "verified directly (WebFetch/WebSearch) 2026-07-17 -- Prague is the Czech Republic's stable capital, with no ongoing ambiguity. This catalog's entries directly cite praha.eu (the city's own official domain, for the current governing law) and Wikipedia (for the 1784 historical unification of the four cities)."}
+

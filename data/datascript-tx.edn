@@ -1,0 +1,25 @@
+;; data/datascript-tx.edn — DataScript tx-data derived from src/ordinance/facts.cljc
+;; `ordinance.facts/catalog` (ADR-2607141700 Wave 0). Same shape as sibling files.
+
+[#:ordinance{:id "prague.act-131-2000-on-the-capital-city-of-prague"
+             :title "Zákon č. 131/2000 Sb., o hlavním městě Praze (Act on the Capital City of Prague)"
+             :municipality "prague"
+             :country "CZE"
+             :kind :local-act
+             :number "131/2000 Sb."
+             :url "https://praha.eu/documents/d/praha/Zakon_o_hl_meste_Praze_1828311"
+             :url-provenance :official-praha-eu
+             :enacted-date "2000-04-13"
+             :retrieved-at "2026-07-17"
+             :topic [:governance]}
+ #:ordinance{:id "prague.1784-unification-four-cities"
+             :title "Unification of the four historic cities of Prague (Hradčany, Malá Strana, Staré Město, Nové Město) under Joseph II"
+             :municipality "prague"
+             :country "CZE"
+             :kind :local-act
+             :number "1784"
+             :url "https://en.wikipedia.org/wiki/History_of_Prague"
+             :url-provenance :wikipedia-corroborated
+             :enacted-date "1784"
+             :retrieved-at "2026-07-17"
+             :topic [:governance]}]

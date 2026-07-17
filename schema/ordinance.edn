@@ -1,0 +1,15 @@
+;; schema/ordinance.edn — DataScript schema for `ordinance.facts` (ADR-2607141700).
+;; Identical shape to cloud-itonami-municipality-jpn-tokyo /
+;; -usa-washington-dc's schema/ordinance.edn.
+
+{:ordinance/id {:db/unique :db.unique/identity}
+ :ordinance/title {}
+ :ordinance/municipality {:db/index true}
+ :ordinance/country {:db/index true}
+ :ordinance/kind {:db/index true}
+ :ordinance/number {}
+ :ordinance/url {}
+ :ordinance/url-provenance {:db/index true}
+ :ordinance/enacted-date {}
+ :ordinance/retrieved-at {}
+ :ordinance/topic {:db/cardinality :db.cardinality/many :db/index true}}

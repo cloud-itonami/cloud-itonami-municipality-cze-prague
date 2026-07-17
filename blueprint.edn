@@ -1,0 +1,13 @@
+{:itonami.blueprint/id "cloud-itonami-municipality-cze-prague"
+ :itonami.blueprint/name "Municipal Ordinance Compliance Catalog — Prague"
+ :itonami.blueprint/iso3166 "CZE"
+ :itonami.blueprint/municipality "prague"
+ :itonami.blueprint/domain :public-sector/municipal-ordinance-compliance
+ :itonami.blueprint/license "AGPL-3.0-or-later"
+ :itonami.blueprint/social-impact [:regulatory-transparency :compliance-cost-reduction]
+ :itonami.blueprint/governor :municipal-compliance-governor
+ :itonami.blueprint/robotics false
+ :itonami.blueprint/required-technologies [:ontology :audit-ledger]
+ :itonami.blueprint/status :public-oss
+ :itonami.blueprint/wave 0
+ :itonami.blueprint/adr "com-junkawasaki/root 90-docs/adr/2607141700-cloud-itonami-compliance-fact-federation.md"}
