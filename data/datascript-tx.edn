@@ -1,25 +1,187 @@
 ;; data/datascript-tx.edn — DataScript tx-data derived from src/ordinance/facts.cljc
 ;; `ordinance.facts/catalog` (ADR-2607141700 Wave 0). Same shape as sibling files.
+;;
+;; GENERATED — do not hand-edit. `ordinance.facts-test/tx-file-matches-catalog`
+;; fails when this file and the catalog disagree, so an edit here that the
+;; catalog does not carry is caught rather than silently believed.
 
-[#:ordinance{:id "prague.act-131-2000-on-the-capital-city-of-prague"
-             :title "Zákon č. 131/2000 Sb., o hlavním městě Praze (Act on the Capital City of Prague)"
-             :municipality "prague"
-             :country "CZE"
-             :kind :local-act
-             :number "131/2000 Sb."
-             :url "https://praha.eu/documents/d/praha/Zakon_o_hl_meste_Praze_1828311"
-             :url-provenance :official-praha-eu
-             :enacted-date "2000-04-13"
-             :retrieved-at "2026-07-17"
-             :topic [:governance]}
- #:ordinance{:id "prague.1784-unification-four-cities"
-             :title "Unification of the four historic cities of Prague (Hradčany, Malá Strana, Staré Město, Nové Město) under Joseph II"
-             :municipality "prague"
-             :country "CZE"
-             :kind :local-act
-             :number "1784"
-             :url "https://en.wikipedia.org/wiki/History_of_Prague"
-             :url-provenance :wikipedia-corroborated
-             :enacted-date "1784"
-             :retrieved-at "2026-07-17"
-             :topic [:governance]}]
+[#:ordinance{:citation-control
+             "https://www.psp.cz/sqw/sbirka.sqw?cz=999131&r=2000",
+             :citation-probe ["131/2000" "hlavním městě Praze"],
+             :country "CZE",
+             :effective-date "2000-11-12",
+             :enacted-date "2000-04-13",
+             :id "prague.act-131-2000-on-the-capital-city-of-prague",
+             :kind :local-act,
+             :municipality "prague",
+             :number "131/2000 Sb.",
+             :prior-citation
+             "https://praha.eu/documents/d/praha/Zakon_o_hl_meste_Praze_1828311",
+             :published-date "2000-05-17",
+             :retrieved-at "2026-09-10",
+             :status :in-force,
+             :title
+             "Zákon č. 131/2000 Sb., o hlavním městě Praze (Act on the Capital City of Prague)",
+             :topic [:governance],
+             :url "https://www.psp.cz/sqw/sbirka.sqw?cz=131&r=2000",
+             :url-provenance :official-psp-cz}
+ #:ordinance{:citation-control
+             "https://sbirkapp.gov.cz/detail/SPPJEZKYPH7KEKIG",
+             :citation-probe ["55/2000" "HLAVNÍ MĚSTO PRAHA"],
+             :country "CZE",
+             :effective-date "2001-07-01",
+             :enacted-date "2000-12-21",
+             :id "prague.ozv-55-2000-statut-hlavniho-mesta-prahy",
+             :kind :ordinance,
+             :municipality "prague",
+             :number "55/2000 Sb. hl. m. Prahy",
+             :retrieved-at "2026-09-10",
+             :status :in-force,
+             :title
+             "Obecně závazná vyhláška, kterou se vydává Statut hlavního města Prahy",
+             :topic [:governance],
+             :url "https://sbirkapp.gov.cz/detail/SPPQQ5YBNZFS4C5E",
+             :url-provenance :official-sbirkapp-gov-cz}
+ #:ordinance{:citation-control
+             "https://sbirkapp.gov.cz/detail/SPPJEZKYPH7KEKIG",
+             :citation-probe ["12/2024" "HLAVNÍ MĚSTO PRAHA"],
+             :country "CZE",
+             :effective-date "2024-07-01",
+             :enacted-date "2024-06-24",
+             :id "prague.narizeni-12-2024-prazske-stavebni-predpisy",
+             :kind :regulation,
+             :municipality "prague",
+             :number "12/2024 Sb. hl. m. Prahy",
+             :published-date "2024-06-25",
+             :retrieved-at "2026-09-10",
+             :status :in-force,
+             :title
+             "Nařízení hlavního města Prahy o požadavcích na výstavbu v hlavním městě Praze (pražské stavební předpisy)",
+             :topic [:construction :land-use],
+             :url "https://sbirkapp.gov.cz/detail/SPPDFBZDKD366UXQ",
+             :url-provenance :official-sbirkapp-gov-cz}
+ #:ordinance{:citation-control
+             "https://sbirkapp.gov.cz/detail/SPPJEZKYPH7KEKIG",
+             :citation-probe ["19/2025" "HLAVNÍ MĚSTO PRAHA"],
+             :country "CZE",
+             :effective-date "2026-01-01",
+             :enacted-date "2025-12-11",
+             :id "prague.ozv-19-2025-skolske-obvody-zakladnich-skol",
+             :kind :ordinance,
+             :municipality "prague",
+             :number "19/2025 Sb. hl. m. Prahy",
+             :published-date "2025-12-15",
+             :retrieved-at "2026-09-10",
+             :status :in-force,
+             :title
+             "Obecně závazná vyhláška hlavního města Prahy o školských obvodech základních škol",
+             :topic [:education],
+             :url "https://sbirkapp.gov.cz/detail/SPPE3FO5TONQKOT6",
+             :url-provenance :official-sbirkapp-gov-cz}
+ #:ordinance{:citation-control
+             "https://sbirkapp.gov.cz/detail/SPPJEZKYPH7KEKIG",
+             :citation-probe ["6/2025" "HLAVNÍ MĚSTO PRAHA"],
+             :country "CZE",
+             :effective-date "2025-04-01",
+             :enacted-date "2025-03-27",
+             :id "prague.ozv-6-2025-skolske-obvody-materskych-skol",
+             :kind :ordinance,
+             :municipality "prague",
+             :number "6/2025 Sb. hl. m. Prahy",
+             :published-date "2025-03-31",
+             :retrieved-at "2026-09-10",
+             :status :in-force,
+             :title
+             "Obecně závazná vyhláška hlavního města Prahy o školských obvodech mateřských škol",
+             :topic [:education],
+             :url "https://sbirkapp.gov.cz/detail/SPPG5UPLXPBXQCNO",
+             :url-provenance :official-sbirkapp-gov-cz}
+ #:ordinance{:citation-control
+             "https://sbirkapp.gov.cz/detail/SPPJEZKYPH7KEKIG",
+             :citation-probe ["1/2025" "HLAVNÍ MĚSTO PRAHA"],
+             :country "CZE",
+             :effective-date "2025-03-01",
+             :enacted-date "2025-01-23",
+             :id "prague.ozv-1-2025-mista-bez-verejne-sbirky",
+             :kind :ordinance,
+             :municipality "prague",
+             :number "1/2025 Sb. hl. m. Prahy",
+             :published-date "2025-01-28",
+             :retrieved-at "2026-09-10",
+             :status :in-force,
+             :title
+             "Obecně závazná vyhláška hlavního města Prahy, kterou se stanoví místa, na kterých nelze konat nebo propagovat veřejnou sbírku",
+             :topic [:public-order],
+             :url "https://sbirkapp.gov.cz/detail/SPPUQ7G2GY5D4OV2",
+             :url-provenance :official-sbirkapp-gov-cz}
+ #:ordinance{:citation-control
+             "https://sbirkapp.gov.cz/detail/SPPJEZKYPH7KEKIG",
+             :citation-probe ["12/2026" "HLAVNÍ MĚSTO PRAHA"],
+             :country "CZE",
+             :effective-date "2026-07-08",
+             :enacted-date "2026-06-19",
+             :id "prague.ozv-12-2026-zakaz-pyrotechniky",
+             :kind :ordinance,
+             :municipality "prague",
+             :number "12/2026 Sb. hl. m. Prahy",
+             :published-date "2026-06-23",
+             :retrieved-at "2026-09-10",
+             :status :in-force,
+             :title
+             "Obecně závazná vyhláška hlavního města Prahy o zákazu zacházení s pyrotechnickými výrobky a zákazu používání některých výrobků s neřízeným letem v hlavním městě Praze",
+             :topic [:public-order :safety],
+             :url "https://sbirkapp.gov.cz/detail/SPPLXEXMGTDWJ7FM",
+             :url-provenance :official-sbirkapp-gov-cz}
+ #:ordinance{:citation-control
+             "https://sbirkapp.gov.cz/detail/SPPJEZKYPH7KEKIG",
+             :citation-probe ["2/2026" "HLAVNÍ MĚSTO PRAHA"],
+             :country "CZE",
+             :effective-date "2027-08-01",
+             :enacted-date "2026-01-22",
+             :id "prague.ozv-2-2026-technicke-pozadavky-taxisluzby",
+             :kind :ordinance,
+             :municipality "prague",
+             :number "2/2026 Sb. hl. m. Prahy",
+             :published-date "2026-01-27",
+             :retrieved-at "2026-09-10",
+             :status :in-force,
+             :title
+             "Obecně závazná vyhláška hlavního města Prahy, kterou se stanoví jako podmínka pro zahájení nebo nabízení přepravy na území hlavního města Prahy splnění zvláštních technických požadavků na vozidla taxislužby",
+             :topic [:transport],
+             :url "https://sbirkapp.gov.cz/detail/SPPCHEFTJH6HKR5W",
+             :url-provenance :official-sbirkapp-gov-cz}
+ #:ordinance{:citation-control
+             "https://sbirkapp.gov.cz/detail/SPPJEZKYPH7KEKIG",
+             :citation-probe ["4/2026" "HLAVNÍ MĚSTO PRAHA"],
+             :country "CZE",
+             :effective-date "2026-02-26",
+             :enacted-date "2026-02-09",
+             :id
+             "prague.narizeni-4-2026-prirodni-pamatka-letensky-profil",
+             :kind :regulation,
+             :municipality "prague",
+             :number "4/2026 Sb. hl. m. Prahy",
+             :published-date "2026-02-11",
+             :retrieved-at "2026-09-10",
+             :status :in-force,
+             :title
+             "Nařízení hlavního města Prahy o zřízení přírodní památky Letenský profil a stanovení jejích bližších ochranných podmínek",
+             :topic [:environment],
+             :url "https://sbirkapp.gov.cz/detail/SPPMLX5NN5FAQIYI",
+             :url-provenance :official-sbirkapp-gov-cz}
+ #:ordinance{:citation-control
+             "https://en.wikipedia.org/wiki/History_of_Brno",
+             :citation-probe ["Hradčany"],
+             :country "CZE",
+             :enacted-date "1784",
+             :id "prague.1784-unification-four-cities",
+             :kind :local-act,
+             :municipality "prague",
+             :number "1784",
+             :retrieved-at "2026-09-10",
+             :status :historical,
+             :title
+             "Unification of the four historic cities of Prague (Hradčany, Malá Strana, Staré Město, Nové Město) under Joseph II",
+             :topic [:governance],
+             :url "https://en.wikipedia.org/wiki/History_of_Prague",
+             :url-provenance :wikipedia-corroborated}]
