@@ -1,6 +1,8 @@
 ;; schema/ordinance.edn — DataScript schema for `ordinance.facts` (ADR-2607141700).
-;; Identical shape to cloud-itonami-municipality-jpn-tokyo /
-;; -usa-washington-dc's schema/ordinance.edn.
+;; Same shape as cloud-itonami-municipality-jpn-tokyo /
+;; -usa-washington-dc's schema/ordinance.edn, plus the four fields the
+;; 2026-09-10 citation pass needed (publication/effective date, in-force
+;; status, and the probe strings that make a citation checkable).
 
 {:ordinance/id {:db/unique :db.unique/identity}
  :ordinance/title {}
@@ -11,5 +13,23 @@
  :ordinance/url {}
  :ordinance/url-provenance {:db/index true}
  :ordinance/enacted-date {}
- :ordinance/retrieved-at {}
+ :ordinance/published-date {}
+ :ordinance/effective-date {}
+ :ordinance/status {:db/index true}
+ ;; Strings that MUST appear in the fetched page for the citation to count as
+ ;; verified. A 200 is not evidence: praha.eu and e-sbirka.gov.cz both return
+ ;; 200 with a JS shell for paths that do not exist (measured 2026-09-10), so
+ ;; status alone cannot tell a live citation from a dead one.
+ :ordinance/citation-probe {:db/cardinality :db.cardinality/many}
+ ;; A URL of the same shape that must NOT satisfy the probes. Declared rather
+ ;; than derived: a mutation the checker invents can land on a part of the URL
+ ;; the server ignores, and then the control passes while proving nothing
+ ;; (measured 2026-09-10 on www.psp.cz, where mutating the year left the page
+ ;; unchanged). Preferring a real page from the wrong authority over a 404 also
+ ;; tests the claim that matters -- that the probe discriminates on WHO issued
+ ;; the document, not merely on whether something loaded.
+ :ordinance/citation-control {}
+ ;; A citation this entry used to carry that no longer serves its document.
+ ;; Kept rather than deleted: the URL rotting is a fact about the source.
+ :ordinance/prior-citation {}
  :ordinance/topic {:db/cardinality :db.cardinality/many :db/index true}}

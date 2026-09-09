@@ -14,48 +14,262 @@
   ADR-2607141700 (cloud-itonami-compliance-fact-federation). The
   Czech Republic's first entry across any of the 3 axes.
 
-  Prague is the Czech Republic's stable capital, with no ongoing
-  ambiguity.
-
-  Zákon č. 131/2000 Sb., o hlavním městě Praze (Act on the Capital
-  City of Prague) -- title, act number, and date directly confirmed
-  by reading praha.eu's (Prague's own official domain) hosted PDF
-  text via the Read-tool saved-path fallback (WebFetch itself
-  reported the PDF as illegible/binary), whose own header reads
-  verbatim '131/2000 Sb. — ZÁKON — ze dne 13. dubna 2000 — o hlavním
-  městě Praze' (dated 13 April 2000). This resolved a date
-  discrepancy: one WebSearch synthesis had claimed '17 May 2000',
-  which the directly-read primary source did not confirm -- the
-  primary source's own '13. dubna 2000' (13 April 2000) was used
-  instead, matching this session's established discipline of
-  preferring directly-read primary sources over conflicting secondary
-  synthesis.
-
-  Unification of the four historic cities of Prague (Hradčany, Malá
-  Strana, Staré Město, Nové Město) under Emperor Joseph II -- directly
-  confirmed via en.wikipedia.org's History of Prague article, which
-  states verbatim: 'In 1784, under Joseph II, the four municipalities
-  of Hradčany, Malá Strana, Staré Město, and Nové Město were merged
-  into a single entity.' (year-only, since the specific day was not
-  confirmed in this directly-read source).
-
   An ordinance not in this table has NO spec-basis, full stop; extend
-  `catalog`, do not invent an id/url/date.")
+  `catalog`, do not invent an id/url/date.
+
+  ## Where these come from (2026-09-10 pass)
+
+  Prague's own regulations are now taken from `sbirkapp.gov.cz`, the
+  Sbirka pravnich predpisu uzemnich samospravnych celku a nekterych
+  spravnich uradu -- the Czech Ministry of the Interior's statutory
+  collection into which municipalities are required to publish. Every
+  Prague entry below was read from that collection's own detail page for
+  that document, and each detail page states the issuing authority
+  verbatim as `HLAVNI MESTO PRAHA` (ICO 00064581, ID DS 48ia97h). The
+  publisher index used to enumerate them is
+  https://sbirkapp.gov.cz/vydavatel/48ia97h?hlavni_typ=pp
+
+  Checking the authority per document is not ceremony. The collection
+  holds every Czech municipality, so a search for a Prague-sounding
+  ordinance returns other towns' ordinances too: `2/2019 o mistnim
+  poplatku z pobytu` (https://sbirkapp.gov.cz/detail/SPPJEZKYPH7KEKIG)
+  reads as a Prague tourist-stay fee and is in fact Mestys Kovarska's,
+  and repealed. It is not in this catalog for that reason.
+
+  ## A 200 is not evidence (measured 2026-09-10)
+
+  `:ordinance/citation-probe` exists because HTTP status alone cannot
+  tell a live citation from a dead one on these hosts:
+
+    praha.eu/documents/d/praha/<anything-at-all>  -> 200, 47 KB JS shell
+    e-sbirka.gov.cz/sb/2000/<anything-at-all>     -> 200, 1 KB JS shell
+
+  Both answer 200 for paths that do not exist, and the bodies they return
+  for a real document and for a fabricated one are the same shape and
+  carry none of the document's own text. A checker that only reads the
+  status code would report those citations green forever, including after
+  the document moved -- the failure this workspace keeps meeting, where a
+  check that could not measure returns the value of a check that measured
+  and found nothing wrong. So each entry carries the strings that must
+  appear in the fetched body, and `scripts/verify_citations.cljs` fails
+  the entry when they do not.
+
+  That is not hypothetical here. This catalog's own Act 131/2000 entry
+  cited praha.eu's hosted PDF, which was read directly on 2026-07-17 and
+  is where the enactment date `13. dubna 2000` in this file came from.
+  As of 2026-09-10 that URL serves the JS shell above and no longer
+  carries a single character of the act. The URL is kept as
+  `:ordinance/prior-citation` rather than deleted -- the source rotting is
+  itself a fact -- and `:ordinance/url` now points at the Chamber of
+  Deputies' Sbirka zakonu entry, which serves the act's number and title
+  in the response body and returns neither for a fabricated act number.
+
+  ## The 17 May 2000 date was never wrong
+
+  An earlier revision of this file recorded that one secondary source
+  claimed `17 May 2000` for Act 131/2000, that the directly-read primary
+  source said `13. dubna 2000`, and that the conflict was resolved
+  against the secondary source. The Chamber of Deputies' entry now cited
+  shows there was no conflict to resolve: it lists
+
+    Castka 39 (17. 5. 2000)        -- the gazette issue it was promulgated in
+    Ucinnost od 12. 11. 2000       -- when it took effect
+
+  against a text adopted `ze dne 13. dubna 2000`. All three dates are
+  correct and describe different events, so the entry now carries all
+  three rather than picking one. Note what the shape of the earlier
+  mistake was: two sources were compared on the assumption that they were
+  answering the same question, and the one that disagreed was discarded.
+  The fields exist so the next reader does not have to make that guess."
+  (:require [kotoba.lang.text :as str]))
 
 (def catalog
   "municipality-slug -> vector of ordinance entries."
   {"prague"
-   [{:ordinance/id "prague.act-131-2000-on-the-capital-city-of-prague"
+   [;; ── enabling statute ────────────────────────────────────────────────
+    {:ordinance/id "prague.act-131-2000-on-the-capital-city-of-prague"
      :ordinance/title "Zákon č. 131/2000 Sb., o hlavním městě Praze (Act on the Capital City of Prague)"
      :ordinance/municipality "prague"
      :ordinance/country "CZE"
      :ordinance/kind :local-act
      :ordinance/number "131/2000 Sb."
-     :ordinance/url "https://praha.eu/documents/d/praha/Zakon_o_hl_meste_Praze_1828311"
-     :ordinance/url-provenance :official-praha-eu
+     :ordinance/url "https://www.psp.cz/sqw/sbirka.sqw?cz=131&r=2000"
+     :ordinance/url-provenance :official-psp-cz
      :ordinance/enacted-date "2000-04-13"
-     :ordinance/retrieved-at "2026-07-17"
+     ;; Castka 39, the gazette issue, per the cited psp.cz page.
+     :ordinance/published-date "2000-05-17"
+     :ordinance/effective-date "2000-11-12"
+     :ordinance/status :in-force
+     :ordinance/citation-probe ["131/2000" "hlavním městě Praze"]
+     ;; Must NOT satisfy the probes above: same endpoint, an act number that does not exist. Note it still contains
+     ;; "131/2000" in cross-references — which is why BOTH probes are required.
+     :ordinance/citation-control "https://www.psp.cz/sqw/sbirka.sqw?cz=999131&r=2000"
+     :ordinance/prior-citation "https://praha.eu/documents/d/praha/Zakon_o_hl_meste_Praze_1828311"
+     :ordinance/retrieved-at "2026-09-10"
      :ordinance/topic #{:governance}}
+
+    ;; ── Prague's own regulations, from sbirkapp.gov.cz ──────────────────
+    {:ordinance/id "prague.ozv-55-2000-statut-hlavniho-mesta-prahy"
+     :ordinance/title "Obecně závazná vyhláška, kterou se vydává Statut hlavního města Prahy"
+     :ordinance/municipality "prague"
+     :ordinance/country "CZE"
+     :ordinance/kind :ordinance
+     :ordinance/number "55/2000 Sb. hl. m. Prahy"
+     :ordinance/url "https://sbirkapp.gov.cz/detail/SPPQQ5YBNZFS4C5E"
+     :ordinance/url-provenance :official-sbirkapp-gov-cz
+     :ordinance/enacted-date "2000-12-21"
+     :ordinance/effective-date "2001-07-01"
+     :ordinance/status :in-force
+     :ordinance/citation-probe ["55/2000" "HLAVNÍ MĚSTO PRAHA"]
+     ;; Must NOT satisfy the probes above: Mestys Kovarska 2/2019 — a real, live page in the same collection from a
+     ;; different municipality. Rejecting it proves the probe discriminates on
+     ;; authority, not merely on "a page loaded".
+     :ordinance/citation-control "https://sbirkapp.gov.cz/detail/SPPJEZKYPH7KEKIG"
+     :ordinance/retrieved-at "2026-09-10"
+     :ordinance/topic #{:governance}}
+
+    {:ordinance/id "prague.narizeni-12-2024-prazske-stavebni-predpisy"
+     :ordinance/title "Nařízení hlavního města Prahy o požadavcích na výstavbu v hlavním městě Praze (pražské stavební předpisy)"
+     :ordinance/municipality "prague"
+     :ordinance/country "CZE"
+     :ordinance/kind :regulation
+     :ordinance/number "12/2024 Sb. hl. m. Prahy"
+     :ordinance/url "https://sbirkapp.gov.cz/detail/SPPDFBZDKD366UXQ"
+     :ordinance/url-provenance :official-sbirkapp-gov-cz
+     :ordinance/enacted-date "2024-06-24"
+     :ordinance/published-date "2024-06-25"
+     :ordinance/effective-date "2024-07-01"
+     :ordinance/status :in-force
+     :ordinance/citation-probe ["12/2024" "HLAVNÍ MĚSTO PRAHA"]
+     ;; Must NOT satisfy the probes above: Mestys Kovarska 2/2019 — a real, live page in the same collection from a
+     ;; different municipality. Rejecting it proves the probe discriminates on
+     ;; authority, not merely on "a page loaded".
+     :ordinance/citation-control "https://sbirkapp.gov.cz/detail/SPPJEZKYPH7KEKIG"
+     :ordinance/retrieved-at "2026-09-10"
+     :ordinance/topic #{:construction :land-use}}
+
+    {:ordinance/id "prague.ozv-19-2025-skolske-obvody-zakladnich-skol"
+     :ordinance/title "Obecně závazná vyhláška hlavního města Prahy o školských obvodech základních škol"
+     :ordinance/municipality "prague"
+     :ordinance/country "CZE"
+     :ordinance/kind :ordinance
+     :ordinance/number "19/2025 Sb. hl. m. Prahy"
+     :ordinance/url "https://sbirkapp.gov.cz/detail/SPPE3FO5TONQKOT6"
+     :ordinance/url-provenance :official-sbirkapp-gov-cz
+     :ordinance/enacted-date "2025-12-11"
+     :ordinance/published-date "2025-12-15"
+     :ordinance/effective-date "2026-01-01"
+     :ordinance/status :in-force
+     :ordinance/citation-probe ["19/2025" "HLAVNÍ MĚSTO PRAHA"]
+     ;; Must NOT satisfy the probes above: Mestys Kovarska 2/2019 — a real, live page in the same collection from a
+     ;; different municipality. Rejecting it proves the probe discriminates on
+     ;; authority, not merely on "a page loaded".
+     :ordinance/citation-control "https://sbirkapp.gov.cz/detail/SPPJEZKYPH7KEKIG"
+     :ordinance/retrieved-at "2026-09-10"
+     :ordinance/topic #{:education}}
+
+    {:ordinance/id "prague.ozv-6-2025-skolske-obvody-materskych-skol"
+     :ordinance/title "Obecně závazná vyhláška hlavního města Prahy o školských obvodech mateřských škol"
+     :ordinance/municipality "prague"
+     :ordinance/country "CZE"
+     :ordinance/kind :ordinance
+     :ordinance/number "6/2025 Sb. hl. m. Prahy"
+     :ordinance/url "https://sbirkapp.gov.cz/detail/SPPG5UPLXPBXQCNO"
+     :ordinance/url-provenance :official-sbirkapp-gov-cz
+     :ordinance/enacted-date "2025-03-27"
+     :ordinance/published-date "2025-03-31"
+     :ordinance/effective-date "2025-04-01"
+     :ordinance/status :in-force
+     :ordinance/citation-probe ["6/2025" "HLAVNÍ MĚSTO PRAHA"]
+     ;; Must NOT satisfy the probes above: Mestys Kovarska 2/2019 — a real, live page in the same collection from a
+     ;; different municipality. Rejecting it proves the probe discriminates on
+     ;; authority, not merely on "a page loaded".
+     :ordinance/citation-control "https://sbirkapp.gov.cz/detail/SPPJEZKYPH7KEKIG"
+     :ordinance/retrieved-at "2026-09-10"
+     :ordinance/topic #{:education}}
+
+    {:ordinance/id "prague.ozv-1-2025-mista-bez-verejne-sbirky"
+     :ordinance/title "Obecně závazná vyhláška hlavního města Prahy, kterou se stanoví místa, na kterých nelze konat nebo propagovat veřejnou sbírku"
+     :ordinance/municipality "prague"
+     :ordinance/country "CZE"
+     :ordinance/kind :ordinance
+     :ordinance/number "1/2025 Sb. hl. m. Prahy"
+     :ordinance/url "https://sbirkapp.gov.cz/detail/SPPUQ7G2GY5D4OV2"
+     :ordinance/url-provenance :official-sbirkapp-gov-cz
+     :ordinance/enacted-date "2025-01-23"
+     :ordinance/published-date "2025-01-28"
+     :ordinance/effective-date "2025-03-01"
+     :ordinance/status :in-force
+     :ordinance/citation-probe ["1/2025" "HLAVNÍ MĚSTO PRAHA"]
+     ;; Must NOT satisfy the probes above: Mestys Kovarska 2/2019 — a real, live page in the same collection from a
+     ;; different municipality. Rejecting it proves the probe discriminates on
+     ;; authority, not merely on "a page loaded".
+     :ordinance/citation-control "https://sbirkapp.gov.cz/detail/SPPJEZKYPH7KEKIG"
+     :ordinance/retrieved-at "2026-09-10"
+     :ordinance/topic #{:public-order}}
+
+    {:ordinance/id "prague.ozv-12-2026-zakaz-pyrotechniky"
+     :ordinance/title "Obecně závazná vyhláška hlavního města Prahy o zákazu zacházení s pyrotechnickými výrobky a zákazu používání některých výrobků s neřízeným letem v hlavním městě Praze"
+     :ordinance/municipality "prague"
+     :ordinance/country "CZE"
+     :ordinance/kind :ordinance
+     :ordinance/number "12/2026 Sb. hl. m. Prahy"
+     :ordinance/url "https://sbirkapp.gov.cz/detail/SPPLXEXMGTDWJ7FM"
+     :ordinance/url-provenance :official-sbirkapp-gov-cz
+     :ordinance/enacted-date "2026-06-19"
+     :ordinance/published-date "2026-06-23"
+     :ordinance/effective-date "2026-07-08"
+     :ordinance/status :in-force
+     :ordinance/citation-probe ["12/2026" "HLAVNÍ MĚSTO PRAHA"]
+     ;; Must NOT satisfy the probes above: Mestys Kovarska 2/2019 — a real, live page in the same collection from a
+     ;; different municipality. Rejecting it proves the probe discriminates on
+     ;; authority, not merely on "a page loaded".
+     :ordinance/citation-control "https://sbirkapp.gov.cz/detail/SPPJEZKYPH7KEKIG"
+     :ordinance/retrieved-at "2026-09-10"
+     :ordinance/topic #{:public-order :safety}}
+
+    {:ordinance/id "prague.ozv-2-2026-technicke-pozadavky-taxisluzby"
+     :ordinance/title "Obecně závazná vyhláška hlavního města Prahy, kterou se stanoví jako podmínka pro zahájení nebo nabízení přepravy na území hlavního města Prahy splnění zvláštních technických požadavků na vozidla taxislužby"
+     :ordinance/municipality "prague"
+     :ordinance/country "CZE"
+     :ordinance/kind :ordinance
+     :ordinance/number "2/2026 Sb. hl. m. Prahy"
+     :ordinance/url "https://sbirkapp.gov.cz/detail/SPPCHEFTJH6HKR5W"
+     :ordinance/url-provenance :official-sbirkapp-gov-cz
+     :ordinance/enacted-date "2026-01-22"
+     :ordinance/published-date "2026-01-27"
+     ;; adopted 2026, effective 2027 -- the gap is in the ordinance itself
+     :ordinance/effective-date "2027-08-01"
+     :ordinance/status :in-force
+     :ordinance/citation-probe ["2/2026" "HLAVNÍ MĚSTO PRAHA"]
+     ;; Must NOT satisfy the probes above: Mestys Kovarska 2/2019 — a real, live page in the same collection from a
+     ;; different municipality. Rejecting it proves the probe discriminates on
+     ;; authority, not merely on "a page loaded".
+     :ordinance/citation-control "https://sbirkapp.gov.cz/detail/SPPJEZKYPH7KEKIG"
+     :ordinance/retrieved-at "2026-09-10"
+     :ordinance/topic #{:transport}}
+
+    {:ordinance/id "prague.narizeni-4-2026-prirodni-pamatka-letensky-profil"
+     :ordinance/title "Nařízení hlavního města Prahy o zřízení přírodní památky Letenský profil a stanovení jejích bližších ochranných podmínek"
+     :ordinance/municipality "prague"
+     :ordinance/country "CZE"
+     :ordinance/kind :regulation
+     :ordinance/number "4/2026 Sb. hl. m. Prahy"
+     :ordinance/url "https://sbirkapp.gov.cz/detail/SPPMLX5NN5FAQIYI"
+     :ordinance/url-provenance :official-sbirkapp-gov-cz
+     :ordinance/enacted-date "2026-02-09"
+     :ordinance/published-date "2026-02-11"
+     :ordinance/effective-date "2026-02-26"
+     :ordinance/status :in-force
+     :ordinance/citation-probe ["4/2026" "HLAVNÍ MĚSTO PRAHA"]
+     ;; Must NOT satisfy the probes above: Mestys Kovarska 2/2019 — a real, live page in the same collection from a
+     ;; different municipality. Rejecting it proves the probe discriminates on
+     ;; authority, not merely on "a page loaded".
+     :ordinance/citation-control "https://sbirkapp.gov.cz/detail/SPPJEZKYPH7KEKIG"
+     :ordinance/retrieved-at "2026-09-10"
+     :ordinance/topic #{:environment}}
+
+    ;; ── historical ─────────────────────────────────────────────────────
     {:ordinance/id "prague.1784-unification-four-cities"
      :ordinance/title "Unification of the four historic cities of Prague (Hradčany, Malá Strana, Staré Město, Nové Město) under Joseph II"
      :ordinance/municipality "prague"
@@ -65,7 +279,11 @@
      :ordinance/url "https://en.wikipedia.org/wiki/History_of_Prague"
      :ordinance/url-provenance :wikipedia-corroborated
      :ordinance/enacted-date "1784"
-     :ordinance/retrieved-at "2026-07-17"
+     :ordinance/status :historical
+     :ordinance/citation-probe ["Hradčany"]
+     ;; Must NOT satisfy the probes above: a real article about a different Czech city.
+     :ordinance/citation-control "https://en.wikipedia.org/wiki/History_of_Brno"
+     :ordinance/retrieved-at "2026-09-10"
      :ordinance/topic #{:governance}}]})
 
 (defn spec-basis [muni] (get catalog muni))
@@ -80,9 +298,41 @@
       :covered-municipalities (vec (sort have))
       :missing-municipalities (vec (sort missing))
       :note (str "cloud-itonami-municipality-cze-prague Wave 0 (ADR-2607141700): "
-                 (count (get catalog "prague")) " Prague entries seeded "
-                 "with praha.eu/Wikipedia citations. "
+                 (count (get catalog "prague")) " Prague entries, each cited to "
+                 "sbirkapp.gov.cz (the Interior Ministry's statutory collection), "
+                 "psp.cz, or Wikipedia. "
                  "Extend `ordinance.facts/catalog`, never fabricate an id/url.")})))
 
 (defn by-topic [muni topic]
   (filterv #(contains? (:ordinance/topic %) topic) (spec-basis muni)))
+
+(defn citations
+  "Every entry's citation as a checkable claim: the URL, and the strings that
+  must appear in the body fetched from it.
+
+  Returned rather than assumed, so that `scripts/verify_citations.cljs` and
+  the test suite read the same list the catalog actually carries -- a probe
+  list that drifts from the catalog would verify URLs nobody cites."
+  ([] (citations (keys catalog)))
+  ([munis]
+   (vec (for [m (sort munis)
+              e (spec-basis m)]
+          {:id (:ordinance/id e)
+           :url (:ordinance/url e)
+           :probe (vec (:ordinance/citation-probe e))
+           :control (:ordinance/citation-control e)}))))
+
+(defn unverifiable-citations
+  "Entries whose citation cannot be checked, because they name no probe string.
+
+  Kept as a first-class query, not a comment: an entry with no probe is not a
+  verified entry, and counting it as one is how a catalog starts reporting
+  green for links that have stopped resolving."
+  ([] (unverifiable-citations (keys catalog)))
+  ([munis] (filterv #(empty? (:probe %)) (citations munis))))
+
+(defn https-only?
+  "True when every catalogued citation is https. Plain http would let a probe
+  match content an intermediary chose."
+  ([] (https-only? (keys catalog)))
+  ([munis] (every? #(str/starts-with? (:url %) "https://") (citations munis))))
