@@ -1,4 +1,4 @@
-;; data/datascript-tx.edn — DataScript tx-data derived from src/ordinance/facts.cljc
+;; data/datascript-tx.edn — DataScript tx-data derived from src/ordinance/facts.cljk
 ;; `ordinance.facts/catalog` (ADR-2607141700 Wave 0). Same shape as sibling files.
 ;;
 ;; GENERATED — do not hand-edit. `ordinance.facts-test/tx-file-matches-catalog`

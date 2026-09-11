@@ -111,8 +111,8 @@ itself a fact worth recording.
 ### Verifying the citations
 
 ```
-nbb scripts/verify_citations.cljs             # fetch each citation, check its probes
-nbb scripts/verify_citations.cljs --control   # also prove the check discriminates
+nbb scripts/verify_citations.cljk             # fetch each citation, check its probes
+nbb scripts/verify_citations.cljk --control   # also prove the check discriminates
 ```
 
 Exit is three-valued, so that "could not measure" never reads as "measured and
@@ -141,13 +141,13 @@ fabricate one.
 
 ## Data
 
-- `src/ordinance/facts.cljc` — the catalog, source of truth.
+- `src/ordinance/facts.cljk` — the catalog, source of truth.
 - `schema/ordinance.edn` — DataScript schema.
 - `data/datascript-tx.edn` — **generated** from the catalog; do not hand-edit.
   `ordinance.facts-test/tx-file-matches-catalog` fails when the two disagree.
   Query it alongside other `cloud-itonami`/`etzhayyim` compliance-fact sources
   via `com-junkawasaki/root`'s `scripts/compliance-fact-query.cljs`.
-- `scripts/verify_citations.cljs` — the citation check described above.
+- `scripts/verify_citations.cljk` — the citation check described above.
 
 Ten entries, each verified against the page it cites on 2026-09-10:
 
