@@ -111,8 +111,8 @@ itself a fact worth recording.
 ### Verifying the citations
 
 ```
-nbb scripts/verify_citations.cljk             # fetch each citation, check its probes
-nbb scripts/verify_citations.cljk --control   # also prove the check discriminates
+kbb --backend sci scripts/verify_citations.cljk             # fetch each citation, check its probes
+kbb --backend sci scripts/verify_citations.cljk --control   # also prove the check discriminates
 ```
 
 Exit is three-valued, so that "could not measure" never reads as "measured and
