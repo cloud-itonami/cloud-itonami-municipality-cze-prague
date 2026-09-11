@@ -1,9 +1,9 @@
 #!/usr/bin/env nbb
-;; scripts/verify_citations.cljs — check that this catalog's citations still
+;; scripts/verify_citations.cljk — check that this catalog's citations still
 ;; serve the documents they claim, and that the check can tell when they do not.
 ;;
-;;   nbb scripts/verify_citations.cljs             # verify every citation
-;;   nbb scripts/verify_citations.cljs --control   # also prove the check discriminates
+;;   nbb scripts/verify_citations.cljk             # verify every citation
+;;   nbb scripts/verify_citations.cljk --control   # also prove the check discriminates
 ;;
 ;; Exit is three-valued on purpose:
 ;;   0  every citation fetched and carried its probe strings

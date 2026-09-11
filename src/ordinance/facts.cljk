@@ -51,7 +51,7 @@
   the document moved -- the failure this workspace keeps meeting, where a
   check that could not measure returns the value of a check that measured
   and found nothing wrong. So each entry carries the strings that must
-  appear in the fetched body, and `scripts/verify_citations.cljs` fails
+  appear in the fetched body, and `scripts/verify_citations.cljk` fails
   the entry when they do not.
 
   That is not hypothetical here. This catalog's own Act 131/2000 entry
@@ -310,7 +310,7 @@
   "Every entry's citation as a checkable claim: the URL, and the strings that
   must appear in the body fetched from it.
 
-  Returned rather than assumed, so that `scripts/verify_citations.cljs` and
+  Returned rather than assumed, so that `scripts/verify_citations.cljk` and
   the test suite read the same list the catalog actually carries -- a probe
   list that drifts from the catalog would verify URLs nobody cites."
   ([] (citations (keys catalog)))
