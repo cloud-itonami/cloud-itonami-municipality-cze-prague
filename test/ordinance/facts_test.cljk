@@ -1,7 +1,7 @@
 (ns ordinance.facts-test
   (:require [kotoba.lang.text :as str]
             [kotoba.lang.edn :as edn]
-            [clojure.java.io :as io]
+            [kotoba.io :as io]
             [kotoba.test :refer [deftest is]]
             [ordinance.facts :as facts]))
 
