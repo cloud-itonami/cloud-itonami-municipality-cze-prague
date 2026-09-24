@@ -2,7 +2,7 @@
   (:require [kotoba.lang.text :as str]
             [clojure.edn :as edn]
             [clojure.java.io :as io]
-            [clojure.test :refer [deftest is]]
+            [kotoba.test :refer [deftest is]]
             [ordinance.facts :as facts]))
 
 (def entries (facts/spec-basis "prague"))
