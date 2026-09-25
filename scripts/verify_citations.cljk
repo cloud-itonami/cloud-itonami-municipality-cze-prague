@@ -18,7 +18,7 @@
 ;; so a status-only checker reports a rotted citation as healthy forever.
 
 (ns verify-citations
-  (:require [clojure.string :as string]
+  (:require [kotoba.lang.text :as string]
             [cljs.reader :as reader]
             ["fs" :as fs]
             ["process" :as process]))
@@ -51,7 +51,7 @@
   [r]
   (let [ct (or (.get (.-headers r) "content-type") "")
         m (re-find #"(?i)charset=[\s\"']*([\w-]+)" ct)]
-    (if m (string/lower-case (second m)) "utf-8")))
+    (if m (string/lower (second m)) "utf-8")))
 
 (defn fetch-body
   "Fetch url, returning {:status n :body s} or {:error msg}.
